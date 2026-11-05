@@ -8,6 +8,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -17,6 +19,17 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Keep Android system bars visible and reserve their space.
+        Window window = getWindow();
+        window.setStatusBarColor(android.graphics.Color.rgb(6, 70, 90));
+        window.setNavigationBarColor(android.graphics.Color.rgb(7, 20, 69));
+        window.getDecorView().setSystemUiVisibility(0);
+        if (android.os.Build.VERSION.SDK_INT >= 29) {
+            window.setStatusBarContrastEnforced(false);
+            window.setNavigationBarContrastEnforced(false);
+        }
+
         webView = new WebView(this);
         setContentView(webView);
 
